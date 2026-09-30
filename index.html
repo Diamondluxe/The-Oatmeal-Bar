@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Daily Oats - Build Your Bowl</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#757572",
+                        "tertiary": "#5c5c59",
+                        "on-surface": "#1b1c1c",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "surface-container": "#f0eded",
+                        "surface-tint": "#ba1340",
+                        "error": "#ba1a1a",
+                        "background": "#fcf9f8",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed": "#40000f",
+                        "on-primary-container": "#fffbff",
+                        "outline": "#8e6f71",
+                        "surface-variant": "#e4e2e1",
+                        "inverse-on-surface": "#f3f0f0",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#881e18",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#ffb2b8",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#91002d",
+                        "on-tertiary-container": "#fefcf8",
+                        "surface-container-highest": "#e4e2e1",
+                        "secondary-container": "#ff7668",
+                        "secondary": "#a9362d",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#b60e3d",
+                        "secondary-fixed-dim": "#ffb4aa",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "secondary-fixed": "#ffdad5",
+                        "primary-fixed": "#ffdadb",
+                        "on-secondary-fixed": "#410001",
+                        "inverse-primary": "#ffb2b8",
+                        "on-secondary-container": "#720c0b",
+                        "inverse-surface": "#303030",
+                        "on-surface-variant": "#5a4042",
+                        "surface": "#fcf9f8",
+                        "tertiary-fixed-dim": "#c8c6c3",
+                        "surface-bright": "#fcf9f8",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#da3054",
+                        "outline-variant": "#e2bec0",
+                        "tertiary-fixed": "#e4e2de",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "on-background": "#1b1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "lg": "48px",
+                        "base": "8px",
+                        "md": "24px",
+                        "margin-desktop": "64px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "button-text": ["Quicksand"],
+                        "label-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Quicksand"],
+                        "headline-xl-mobile": ["Quicksand"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Quicksand"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "button-text": ["16px", { "lineHeight": "1", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto">
+            <!-- Brand Logo -->
+            <a class="flex items-center gap-2 group" href="#">
+                <img class="w-10 h-10 object-contain group-hover:scale-105 transition-transform" alt="Daily Oats Logo" src="daily_oats_logo.png">
+                <span class="text-headline-md font-headline-md text-primary tracking-tight hidden md:block">DAILY OATS</span>
+            </a>
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-md">
+                <a class="text-on-surface-variant font-button-text text-button-text hover:text-primary transition-colors" href="#quality">Quality &amp; Story</a>
+                <a class="text-primary font-button-text text-button-text border-b-2 border-primary pb-1" href="#build-bowl">Build Your Bowl</a>
+                <a class="text-on-surface-variant font-button-text text-button-text hover:text-primary transition-colors" href="#reviews">Reviews</a>
+                <a class="text-on-surface-variant font-button-text text-button-text hover:text-primary transition-colors" href="#faq">FAQ</a>
+                <a class="text-on-surface-variant font-button-text text-button-text hover:text-primary transition-colors" href="#find-us">Find Us</a>
+            </nav>
+            <!-- Trailing Icons -->
+            <div class="flex items-center gap-sm">
+
+                <!-- Track Orders Button with Glowing Dot Indicator -->
+    <button id="open-orders-btn" aria-label="track_orders" title="Track Placed Orders" class="text-primary hover:opacity-80 transition-opacity active:scale-95 p-2 rounded-full hover:bg-surface-variant relative">
+        <span class="material-symbols-outlined">receipt_long</span>
+        <!-- Glowing Dot for Active Orders -->
+        <span id="order-glow-dot" class="hidden absolute top-1 right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+        </span>
+    </button>
+
+                <!-- Trolley Cart Button with Dynamic Badge -->
+                <button id="open-cart-btn" aria-label="shopping_cart" class="text-primary hover:opacity-80 transition-opacity active:scale-95 p-2 rounded-full hover:bg-surface-variant relative">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-on-primary text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
+                </button>
+                <button aria-label="account_circle" class="text-primary hover:opacity-80 transition-opacity active:scale-95 p-2 rounded-full hover:bg-surface-variant hidden md:block">
+                    <span class="material-symbols-outlined">account_circle</span>
+                </button>
+                <!-- Mobile Navigation Toggle Button -->
+                <button id="mobile-menu-btn" aria-label="menu" class="md:hidden text-primary p-2 rounded-full hover:bg-surface-variant">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-on-surface/40 backdrop-blur-sm hidden transition-opacity duration-300">
+        <div class="bg-surface w-4/5 max-w-sm h-full p-md shadow-2xl flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between mb-lg">
+                    <span class="text-headline-md font-headline-md text-primary">DAILY OATS</span>
+                    <button id="close-mobile-menu" class="text-on-surface-variant p-2 rounded-full hover:bg-surface-variant">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-md">
+                    <a class="text-body-lg font-button-text text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant pb-2" href="#quality">Quality &amp; Story</a>
+                    <a class="text-body-lg font-button-text text-primary border-b border-surface-variant pb-2" href="#build-bowl">Build Your Bowl</a>
+                    <a class="text-body-lg font-button-text text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant pb-2" href="#reviews">Reviews</a>
+                    <a class="text-body-lg font-button-text text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant pb-2" href="#faq">FAQ</a>
+                    <a class="text-body-lg font-button-text text-on-surface-variant hover:text-primary transition-colors border-b border-surface-variant pb-2" href="#find-us">Find Us</a>
+                </nav>
+            </div>
+            <div class="pt-md border-t border-surface-variant text-center">
+                <p class="text-body-md text-on-surface-variant">Fuel Your Day, The Fresh Way 🥣</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide-Out Trolley Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-[90] hidden">
+        <div id="cart-backdrop" class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm"></div>
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-surface shadow-2xl flex flex-col justify-between z-10 p-md transition-transform">
+            <div>
+                <div class="flex items-center justify-between border-b border-surface-variant pb-sm mb-md">
+                    <h3 class="text-headline-md font-headline-md text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">shopping_bag</span> Your Trolley
+                    </h3>
+                    <button id="close-cart-btn" class="p-1 text-on-surface-variant hover:bg-surface-variant rounded-full">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <div id="cart-items-container" class="space-y-sm max-h-[60vh] overflow-y-auto pr-1">
+                    <!-- Populated dynamically by script.js -->
+                </div>
+            </div>
+
+            <div class="border-t border-surface-variant pt-md space-y-md bg-surface">
+                <div class="flex justify-between items-center text-headline-md font-headline-md">
+                    <span>Subtotal:</span>
+                    <span id="cart-drawer-subtotal" class="text-primary">$0.00</span>
+                </div>
+                <button id="cart-checkout-btn" class="w-full bg-primary text-on-primary font-button-text py-4 rounded-full shadow-lifted hover:bg-primary-container transition-all">
+                    Proceed to Checkout
+                </button>
+                                <p id="warn" class="text-headline-md font-headline-md mb-md text-on-surface">It's just a learning project! <br> Don't wait for your bowl.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Body -->
+    <main class="flex-grow pt-24 pb-xl">
+        <!-- Hero Section -->
+        <section class="relative w-full max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop mb-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
+                <div class="flex flex-col gap-md z-10">
+                    <h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-surface">Fuel Your Day,<br><span class="text-primary">The Fresh Way 🥣</span></h1>
+                    <p class="text-body-lg font-body-lg text-on-surface-variant max-w-md">Discover the perfect blend of organic oats, fresh toppings, and delicious flavors crafted to power your morning routine.</p>
+                    <div class="pt-sm flex flex-wrap gap-4">
+                        <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button-text text-button-text px-8 py-4 rounded-full shadow-lifted hover:-translate-y-1 hover:shadow-lg transition-all active:scale-95" href="#build-bowl">
+                            Build Custom Bowl
+                        </a>
+                    </div>
+                </div>
+                <div class="relative w-full h-[400px] md:h-[600px] rounded-xl overflow-hidden shadow-ambient">
+                    <img class="w-full h-full object-cover rounded-xl" alt="Fresh Creamy Oatmeal Bowl" src="oathero.png">
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary-fixed-dim rounded-full blur-3xl opacity-30 z-0"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quality & Story Section -->
+        <section id="quality" class="py-xl bg-surface-container-low my-xl">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <h2 class="text-headline-lg font-headline-lg text-center mb-lg">Uncompromised Quality in Every Bowl</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high text-center">
+                        <div class="w-12 h-12 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-sm text-primary">
+                            <span class="material-symbols-outlined">eco</span>
+                        </div>
+                        <h3 class="text-headline-md font-headline-md mb-xs">100% Organic Oats</h3>
+                        <p class="text-body-md text-on-surface-variant">Our oats are sourced from sustainable, organic farms with top quality standards.</p>
+                    </div>
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high text-center">
+                        <div class="w-12 h-12 bg-secondary-fixed rounded-full flex items-center justify-center mx-auto mb-sm text-secondary">
+                            <span class="material-symbols-outlined">verified</span>
+                        </div>
+                        <h3 class="text-headline-md font-headline-md mb-xs">Non-GMO Ingredients</h3>
+                        <p class="text-body-md text-on-surface-variant">Only pure, natural additions with zero artificial preservatives.</p>
+                    </div>
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high text-center">
+                        <div class="w-12 h-12 bg-tertiary-fixed rounded-full flex items-center justify-center mx-auto mb-sm text-tertiary">
+                            <span class="material-symbols-outlined">restaurant</span>
+                        </div>
+                        <h3 class="text-headline-md font-headline-md mb-xs">Freshly Prepared</h3>
+                        <p class="text-body-md text-on-surface-variant">Every bowl is handcrafted right upon your order for peak freshness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Bowl Builder Section -->
+        <section id="build-bowl" class="py-xl max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+            <h2 class="text-headline-lg font-headline-lg text-center mb-lg">Make Your Custom Bowl</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg relative">
+                <!-- Builder Form Controls -->
+                <div class="lg:col-span-8 space-y-lg">
+                    <!-- Step 1: Size -->
+                    <div class="bg-surface rounded-xl p-md shadow-ambient border border-surface-variant">
+                        <h3 class="text-headline-md font-headline-md mb-md flex items-center gap-2">
+                            <span class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center text-label-md font-label-md">1</span> 
+                            Choose Your Size
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+                            <label class="cursor-pointer relative">
+                                <input class="peer sr-only" name="size" type="radio" value="small">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed peer-hover:border-primary-container transition-colors">
+                                    <span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">trip_origin</span>
+                                    <div class="font-label-md text-label-md">Small</div>
+                                    <div class="text-body-md text-on-surface-variant">$5.00</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer relative">
+                                <input checked class="peer sr-only" name="size" type="radio" value="medium">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed peer-hover:border-primary-container transition-colors">
+                                    <span class="material-symbols-outlined text-5xl text-on-surface-variant mb-1">trip_origin</span>
+                                    <div class="font-label-md text-label-md">Medium</div>
+                                    <div class="text-body-md text-on-surface-variant">$7.00</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer relative">
+                                <input class="peer sr-only" name="size" type="radio" value="large">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed peer-hover:border-primary-container transition-colors">
+                                    <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-0">trip_origin</span>
+                                    <div class="font-label-md text-label-md">Large</div>
+                                    <div class="text-body-md text-on-surface-variant">$9.00</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Flavor Base -->
+                    <div class="bg-surface rounded-xl p-md shadow-ambient border border-surface-variant">
+                        <h3 class="text-headline-md font-headline-md mb-md flex items-center gap-2">
+                            <span class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center text-label-md font-label-md">2</span> 
+                            Select Flavor Base
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-sm">
+                            <label class="cursor-pointer">
+                                <input checked class="peer sr-only" name="flavor" type="radio" value="vanilla">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed transition-colors h-full flex flex-col justify-center items-center">
+                                    <div class="font-label-md text-label-md">Classic Vanilla</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input class="peer sr-only" name="flavor" type="radio" value="chocolate">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed transition-colors h-full flex flex-col justify-center items-center">
+                                    <div class="font-label-md text-label-md">Choco Hazelnut</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input class="peer sr-only" name="flavor" type="radio" value="strawberry">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed transition-colors h-full flex flex-col justify-center items-center">
+                                    <div class="font-label-md text-label-md">Strawberry Cream</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input class="peer sr-only" name="flavor" type="radio" value="pistachio">
+                                <div class="p-sm text-center border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary-fixed transition-colors h-full flex flex-col justify-center items-center">
+                                    <div class="font-label-md text-label-md">Pistachio Honey</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Toppings -->
+                    <div class="bg-surface rounded-xl p-md shadow-ambient border border-surface-variant">
+                        <h3 class="text-headline-md font-headline-md mb-md flex items-center gap-2">
+                            <span class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center text-label-md font-label-md">3</span> 
+                            Add Toppings
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="berries">
+                                    <span class="font-body-md text-on-surface">Fresh Berries</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$1.50</span>
+                            </label>
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="chia">
+                                    <span class="font-body-md text-on-surface">Chia Seeds</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$0.50</span>
+                            </label>
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="peanut_butter">
+                                    <span class="font-body-md text-on-surface">Peanut Butter</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$1.00</span>
+                            </label>
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="almonds">
+                                    <span class="font-body-md text-on-surface">Almond Flakes</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$0.75</span>
+                            </label>
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="choco_chips">
+                                    <span class="font-body-md text-on-surface">Dark Choco Chips</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$0.80</span>
+                            </label>
+                            <label class="flex items-center justify-between p-sm border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-low transition-colors">
+                                <div class="flex items-center gap-sm">
+                                    <input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-offset-background" name="topping" type="checkbox" value="pistachio">
+                                    <span class="font-body-md text-on-surface">Crushed Pistachio</span>
+                                </div>
+                                <span class="text-on-surface-variant font-label-md">+$1.25</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Live Summary Sidebar -->
+                <div class="lg:col-span-4">
+                    <div id="summary-card" class="sticky top-28 bg-primary-fixed-dim/20 rounded-xl p-md shadow-ambient border border-primary-fixed backdrop-blur-sm">
+                        <!-- Javascript dynamically renders summary details -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="reviews" class="bg-surface-container-low py-xl my-xl">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <h2 class="text-headline-lg font-headline-lg text-center mb-lg">What Our Oat-Lovers Say</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high flex flex-col gap-sm">
+                        <div class="flex text-primary">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p class="text-body-md font-body-md text-on-surface italic">"The Strawberry Cream base is a game changer. I look forward to my custom bowl every single morning!"</p>
+                        <div class="flex items-center gap-sm mt-2">
+                            <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">S</div>
+                            <span class="font-label-md text-on-surface">Sarah M.</span>
+                        </div>
+                    </div>
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high flex flex-col gap-sm">
+                        <div class="flex text-primary">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p class="text-body-md font-body-md text-on-surface italic">"Best breakfast ever! The toppings are always so fresh and the portions are perfect for a busy workday."</p>
+                        <div class="flex items-center gap-sm mt-2">
+                            <div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">J</div>
+                            <span class="font-label-md text-on-surface">James L.</span>
+                        </div>
+                    </div>
+                    <div class="bg-surface p-md rounded-xl shadow-ambient border border-surface-container-high flex flex-col gap-sm">
+                        <div class="flex text-primary">
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                            <span class="material-symbols-outlined">star</span>
+                        </div>
+                        <p class="text-body-md font-body-md text-on-surface italic">"I love that everything is organic. The custom bowl builder lets me make exactly what I feel like eating."</p>
+                        <div class="flex items-center gap-sm mt-2">
+                            <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold">E</div>
+                            <span class="font-label-md text-on-surface">Emma R.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-xl max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+            <h2 class="text-headline-lg font-headline-lg text-center mb-lg">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-md">
+                <div class="p-md bg-surface rounded-xl border border-surface-variant">
+                    <h4 class="font-headline-md text-on-surface mb-xs">Do you have gluten-free options?</h4>
+                    <p class="text-body-md text-on-surface-variant">Yes! All our oats are certified gluten-free and prepared in a dedicated facility.</p>
+                </div>
+                <div class="p-md bg-surface rounded-xl border border-surface-variant">
+                    <h4 class="font-headline-md text-on-surface mb-xs">Where do you deliver?</h4>
+                    <p class="text-body-md text-on-surface-variant">We currently deliver to the greater metropolitan area. Check your zip code at checkout for availability.</p>
+                </div>
+                <div class="p-md bg-surface rounded-xl border border-surface-variant">
+                    <h4 class="font-headline-md text-on-surface mb-xs">Can I schedule a morning pickup?</h4>
+                    <p class="text-body-md text-on-surface-variant">Absolutely. You can select a pickup time during the checkout process to ensure your bowl is ready when you arrive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Find Us Section -->
+        <section id="find-us" class="py-xl bg-surface-container-low border-t border-surface-variant/30">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <div class="text-center max-w-2xl mx-auto mb-xl">
+                    <h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">Find Us</h2>
+                    <p class="text-body-lg text-on-surface-variant">Visit our cozy oat bars across town for freshly prepared bowls, warm smiles, and wholesome mornings.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+                    <!-- Location 1 -->
+                    <div class="bg-surface rounded-3xl p-md shadow-ambient border border-surface-variant/60 flex flex-col justify-between hover:shadow-lg transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-md">
+                               
+                                <span class="text-primary font-label-md text-label-md">Open Daily</span>
+                            </div>
+                            <h3 class="text-headline-md font-headline-md text-on-surface mb-sm">Clifton Main Hub</h3>
+                            <div class="flex items-start gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-primary text-base mt-1">location_on</span>
+                                <div>
+                                    <p>142 Block 4, Scehme 5</p>
+                                    <p>Clifton, Karachi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex items-center gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-base">schedule</span>
+                                <span>7:00 AM – 4:00 PM</span>
+                            </div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex justify-between items-center text-label-md">
+                                <span class="text-on-surface-variant">Dine-in &amp; Pickup</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location 2 -->
+                    <div class="bg-surface rounded-3xl p-md shadow-ambient border border-surface-variant/60 flex flex-col justify-between hover:shadow-lg transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-md">
+                                
+                                <span class="text-primary font-label-md text-label-md">Open Daily</span>
+                            </div>
+                            <h3 class="text-headline-md font-headline-md text-on-surface mb-sm">T2F Corner</h3>
+                            <div class="flex items-start gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-primary text-base mt-1">location_on</span>
+                                <div>
+                                    <p>10-C, Sunset Lane 5</p>
+                                    <p>DHA, Karachi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex items-center gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-base">schedule</span>
+                                <span>7:30 AM – 5:00 PM</span>
+                            </div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex justify-between items-center text-label-md">
+                                <span class="text-on-surface-variant">Outdoor Seating</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location 3 -->
+                    <div class="bg-surface rounded-3xl p-md shadow-ambient border border-surface-variant/60 flex flex-col justify-between hover:shadow-lg transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-md">
+                                
+                                <span class="text-primary font-label-md text-label-md">Open Daily</span>
+                            </div>
+                            <h3 class="text-headline-md font-headline-md text-on-surface mb-sm">Port Grand View</h3>
+                            <div class="flex items-start gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-primary text-base mt-1">location_on</span>
+                                <div>
+                                    <p>Beach Avenue</p>
+                                    <p>DHA, Phase 8, Karachi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex items-center gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-base">schedule</span>
+                                <span>10:00 AM – 5:00 PM</span>
+                            </div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex justify-between items-center text-label-md">
+                                <span class="text-on-surface-variant">Chai & Mocktail Bar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location 4 -->
+                    <div class="bg-surface rounded-3xl p-md shadow-ambient border border-surface-variant/60 flex flex-col justify-between hover:shadow-lg transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-md">
+
+                                <span class="text-primary font-label-md text-label-md">Open Daily</span>
+                            </div>
+                            <h3 class="text-headline-md font-headline-md text-on-surface mb-sm">Burns Road Alley</h3>
+                            <div class="flex items-start gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-primary text-base mt-1">location_on</span>
+                                <div>
+                                    <p>Block A, Tariq Road</p>
+                                    <p>Karachi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex items-center gap-2 text-on-surface-variant text-body-md mb-md">
+                                <span class="material-symbols-outlined text-base">schedule</span>
+                                <span>7:00 AM – 4:30 PM</span>
+                            </div>
+                            <div class="pt-sm border-t border-surface-variant/40 flex justify-between items-center text-label-md">
+                                <span class="text-on-surface-variant">Express Pickup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <!-- 6. Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>DAILY OATS</h3>
+                    <p>Fueling your body with rich, organic, and custom-tailored oat bowls every single morning.</p>
+                </div>
+                <div class="footer-links">
+                    <h4><b> Quick Links</b></h4>
+                    <ul>
+                        <li><a href="#quality">Quality & Story</a></li>
+                        <li><a href="#build-bowl">Build Your Bowl</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="#">support@dailyoats.com</a></li>
+                        <li><a href="#">+1 (234) 567-890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>This is only learning project.</p>
+                <p>&copy; 2026 Daily Oats. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal Component -->
+    <div id="checkout-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="modal-backdrop" class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm transition-opacity"></div>
+        <div class="bg-surface rounded-xl shadow-2xl p-lg w-full max-w-lg relative z-10 max-h-[90vh] overflow-y-auto transform transition-all">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-variant">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <!-- STEP A: Checkout Form -->
+            <div id="checkout-step-form">
+                <h2 class="text-headline-md font-headline-md mb-md text-on-surface">Complete Your Order</h2>
+                <p id="warn" class="text-headline-md text-10px font-headline-md mb-md text-on-surface">It's just a learning project! <br> Don't wait for your bowl.</p>
+
+                <form id="order-details-form" class="space-y-md" onsubmit="event.preventDefault();">
+                    <div>
+                        <label class="block text-label-md font-label-md text-on-surface mb-xs">Full Name</label>
+                        <input id="user-name" class="w-full border-2 border-outline-variant rounded-lg p-sm focus:border-primary focus:ring-0 transition-colors bg-surface" placeholder="Jane Doe" type="text" required>
+                    </div>
+                    <div>
+                        <label class="block text-label-md font-label-md text-on-surface mb-xs">Phone Number</label>
+                        <input id="user-phone" class="w-full border-2 border-outline-variant rounded-lg p-sm focus:border-primary focus:ring-0 transition-colors bg-surface" placeholder="+92 300 1234567" type="tel" required>
+                    </div>
+
+                    <div class="border-t border-surface-variant pt-md">
+                        <label class="block text-label-md font-label-md text-on-surface mb-sm">Order Type</label>
+                        <div class="flex items-center gap-md">
+                            <label class="flex items-center gap-xs cursor-pointer">
+                                <input type="radio" name="order-type" value="delivery" checked class="text-primary focus:ring-primary">
+                                <span class="font-body-md text-on-surface">Home Delivery</span>
+                            </label>
+                            <label class="flex items-center gap-xs cursor-pointer">
+                                <input type="radio" name="order-type" value="pickup" class="text-primary focus:ring-primary">
+                                <span class="font-body-md text-on-surface">Store Pick Up</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="delivery-address-container">
+                        <label class="block text-label-md font-label-md text-on-surface mb-xs">Delivery Address</label>
+                        <textarea id="user-address" rows="2" class="w-full border-2 border-outline-variant rounded-lg p-sm focus:border-primary focus:ring-0 transition-colors bg-surface" placeholder="House/Apartment #, Street, City" required></textarea>
+                    </div>
+
+                    <div id="pickup-info-container" class="hidden p-md bg-surface-container-low rounded-lg border border-primary/20">
+                        <p class="font-label-md text-primary mb-xs flex items-center gap-xs">
+                            <span class="material-symbols-outlined text-sm">store</span> Store Location:
+                        </p>
+                        <p class="text-body-md text-on-surface">Daily Oats Outlet #4, Gulberg Galleria, Main Boulevard, Karachi.</p>
+                        <p class="text-label-md text-on-surface-variant mt-xs">Pickup Timing: 8:00 AM - 10:00 PM</p>
+                    </div>
+
+                    <div class="border-t border-surface-variant pt-md">
+                        <label class="block text-label-md font-label-md text-on-surface mb-sm">Payment Method</label>
+                        <div class="grid grid-cols-2 gap-sm">
+                            <label class="border-2 border-outline-variant p-sm rounded-lg flex items-center gap-xs cursor-pointer hover:border-primary">
+                                <input type="radio" name="payment-method" value="online" checked class="text-primary focus:ring-primary">
+                                <span class="font-label-md text-on-surface">Pay Online</span>
+                            </label>
+                            <label class="border-2 border-outline-variant p-sm rounded-lg flex items-center gap-xs cursor-pointer hover:border-primary">
+                                <input type="radio" name="payment-method" value="cod" class="text-primary focus:ring-primary">
+                                <span class="font-label-md text-on-surface">Cash on Delivery</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="bg-surface-container-low p-md rounded-lg space-y-xs text-body-md">
+                        <div class="flex justify-between">
+                            <span class="text-on-surface-variant">Bowl Subtotal:</span>
+                            <span id="modal-subtotal" class="font-label-md">$7.00</span>
+                        </div>
+                        <div id="delivery-fee-row" class="flex justify-between">
+                            <span class="text-on-surface-variant">Delivery Charges:</span>
+                            <span class="font-label-md text-primary">$2.00</span>
+                        </div>
+                        <div id="delivery-time-row" class="flex justify-between">
+                            <span class="text-on-surface-variant">Estimated Time:</span>
+                            <span class="font-label-md text-on-surface">25 - 35 mins</span>
+                        </div>
+                        <div class="border-t border-outline-variant/30 pt-xs flex justify-between font-headline-md text-primary">
+                            <span>Grand Total:</span>
+                            <span id="modal-grand-total">$9.00</span>
+                        </div>
+                    </div>
+
+                    <button id="place-order-btn" type="submit" class="w-full bg-primary text-on-primary font-button-text py-4 rounded-full shadow-lifted hover:shadow-lg transition-all text-center block">
+                        Confirm &amp; Place Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- STEP B: Order Completed Screen -->
+            <div id="checkout-step-success" class="hidden text-center py-lg space-y-md">
+                <div class="w-20 h-20 bg-primary-fixed text-primary rounded-full flex items-center justify-center mx-auto shadow-ambient">
+                    <span class="material-symbols-outlined text-5xl">check_circle</span>
+                </div>
+                <h2 class="text-headline-lg font-headline-lg text-on-surface">Order Completed!</h2>
+                <p class="text-body-lg text-on-surface-variant">MashaAllah, your delicious bowl is being prepared with love! 🥣✨</p>
+
+                <div class="bg-surface-container-low p-md rounded-xl text-left space-y-xs text-body-md border border-surface-variant">
+                    <p><strong>Order ID:</strong> <span id="summary-order-id" class="text-primary font-bold">#DO-8892</span></p>
+                    <p><strong>Customer:</strong> <span id="summary-customer-name">---</span></p>
+                    <p><strong>Type:</strong> <span id="summary-fulfillment-type">---</span></p>
+                    <p><strong>Total Paid:</strong> <span id="summary-total-paid" class="text-primary font-bold">$0.00</span></p>
+                </div>
+
+                <button id="finish-order-btn" class="w-full bg-primary text-on-primary font-button-text py-3 rounded-full shadow-lifted">
+                    Back to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Active Orders Modal Component -->
+    <div id="orders-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div id="orders-backdrop" class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm transition-opacity"></div>
+        <div class="bg-surface rounded-xl shadow-2xl p-lg w-full max-w-lg relative z-10 max-h-[85vh] overflow-y-auto transform transition-all">
+            <button id="close-orders-btn" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface p-1 rounded-full hover:bg-surface-variant">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 class="text-headline-md font-headline-md mb-md text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">receipt_long</span> Your Placed Orders
+            </h2>
+                            <p id="warn" class="text-headline-md text-10px font-headline-md mb-md text-on-surface">It's just a learning project! <br> Don't wait for your bowl.</p>
+
+            
+            <div id="active-orders-list" class="space-y-md">
+                <!-- Dynamically populated by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Application JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
