@@ -1,4 +1,4 @@
-# THE OATMEAL BAR | Frontend Checkout Experience 🩰✨
+# THE OATMEAL BAR | Frontend Checkout Experience ✨
 
 > *"Strength in logic, beauty in design."* 
 
