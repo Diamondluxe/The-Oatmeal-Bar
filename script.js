@@ -359,24 +359,28 @@ function updateOrdersUI() {
                     <p>No active orders placed yet 🥣</p>
                 </div>`;
         } else {
-            ordersListContainer.innerHTML = activeOrders.map(order => `
+            ordersListContainer.innerHTML = activeOrders.map((order, index) => `
                 <div class="bg-surface-container-low p-md rounded-xl border border-surface-variant space-y-xs">
                     <div class="flex justify-between items-center border-b border-surface-variant/40 pb-2">
                         <div>
                             <span class="font-bold text-primary">${order.id}</span>
                             <span class="text-xs text-on-surface-variant ml-2">${order.date}</span>
                         </div>
-                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            ${order.status}
-                        </span>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                ${order.status}
+                            </span>
+                            <button onclick="deleteOrder(${index})" class="text-red-500 hover:text-red-700 p-1 transition-colors" title="Delete Order">
+                                <span class="material-symbols-outlined text-sm">delete</span>
+                            </button>
+                        </div>
                     </div>
                     <p class="text-xs font-semibold text-on-surface-variant pt-1">Type: ${order.type}</p>
                     <div class="py-2 space-y-1">
                         ${order.items.map(item => `
                             <div class="flex justify-between text-body-md text-on-surface">
-                                <span>• ${item.title} (x${item.quantity})</span>
-                                <span class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</span>
+                                <span>• ${item.title} (x${item.quantity})</span>                                 <span class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</span>
                             </div>
                         `).join('')}
                     </div>
@@ -388,4 +392,16 @@ function updateOrdersUI() {
             `).join('');
         }
     }
+}
+
+
+function deleteOrder(index) {
+    // Remove order from activeOrders array
+    activeOrders.splice(index, 1);
+    
+    // Update local storage
+    localStorage.setItem('daily_oats_orders', JSON.stringify(activeOrders));
+    
+    // Refresh the Orders UI
+    updateOrdersUI();
 }
