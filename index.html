@@ -221,27 +221,126 @@
 
     <!-- Main Content Body -->
     <main class="flex-grow pt-24 pb-xl">
-        <!-- Hero Section -->
-        <section class="relative w-full max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop mb-xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
-                <div class="flex flex-col gap-md z-10">
-                    <h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-on-surface">Fuel Your Day,<br><span class="text-primary">The Fresh Way 🥣</span></h1>
-                    <p class="text-body-lg font-body-lg text-on-surface-variant max-w-md">Discover the perfect blend of organic oats, fresh toppings, and delicious flavors crafted to power your morning routine.</p>
-                    <div class="pt-sm flex flex-wrap gap-4">
-                        <a class="inline-flex items-center justify-center bg-primary text-on-primary font-button-text text-button-text px-8 py-4 rounded-full shadow-lifted hover:-translate-y-1 hover:shadow-lg transition-all active:scale-95" href="#build-bowl">
-                            Build Custom Bowl
-                        </a>
-                    </div>
-                </div>
-                <div class="relative w-full h-[400px] md:h-[600px] rounded-xl overflow-hidden shadow-ambient">
-                    <img class="w-full h-full object-cover rounded-xl" alt="Fresh Creamy Oatmeal Bowl" src="oathero.png">
-                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary-fixed-dim rounded-full blur-3xl opacity-30 z-0"></div>
-                </div>
-            </div>
-        </section>
+       <!-- Hero Section with Image Carousel -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+  
+  <!-- LEFT SIDE: Content & Text Box -->
+  <div class="space-y-5 md:space-y-6 order-1">
+    <!-- Headline -->
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+      Your Morning Bowl, <br>
+      <span class="bg-gradient-to-r from-[#e62566] to-pink-500 bg-clip-text text-transparent">Custom Built in Seconds</span> 
+    </h1>
+
+    <!-- Description -->
+    <p class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-lg">
+      Choose your base, layer your fresh fruits, nuts, and delicious toppings. Organic, freshly prepared, and delivered right to your doorstep.
+    </p>
+
+    <!-- CTA Group -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+      <button class="w-full sm:w-auto bg-[#e62566] hover:bg-[#d01e54] text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-pink-200 transition-all transform hover:scale-105 text-center">
+        <a href="#build-bowl"> Start Building Now — $8.99 </a> 
+      </button>
+      <p class="text-xs text-gray-400 font-medium text-center sm:text-left">No subscription required • Cancel anytime</p>
+    </div>
+
+    <!-- Trust Markers -->
+    <div class="flex items-center gap-4 sm:gap-6 pt-4 text-xs font-medium text-gray-500 border-t border-gray-100">
+      <span>⚡ 15-Min Express Delivery</span>
+      <span>🌱 100% Organic & Fresh</span>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDE: Image Carousel Slider (Auto-changes every 2 seconds) -->
+  <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white h-[300px] sm:h-[450px] md:h-[500px] w-full order-2">
+    
+    <!-- Image 1: Chocolate Banana Oat Bowl -->
+    <img id="slide-0" src="./bowls/A.jpg" alt="Chocolate Banana Oat Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" />
+
+    <!-- Image 2: Berry & Nutty Oat Bowl -->
+    <img id="slide-1" src="./bowls/B.jpg" alt="Berry & Nutty Oat Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 3: Blueberry Granola Bowl -->
+    <img id="slide-2" src="./bowls/C.jpg" alt="Blueberry Granola Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 4: Choco-Berry Crunchy Bowl -->
+    <img id="slide-3" src="./bowls/D.jpg" alt="Choco-Berry Crunchy Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 5: Kiwi Banana Peanut Butter Bowl -->
+    <img id="slide-4" src="./bowls/E.jpg" alt="Kiwi Banana Peanut Butter Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 6: Stripe Berry Smoothie Bowl -->
+    <img id="slide-5" src="./bowls/F.jpg" alt="Stripe Berry Smoothie Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 7: Creamy Banana Raspberry Bowl -->
+    <img id="slide-6" src="./bowls/G.jpg" alt="Creamy Banana Raspberry Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 8: Cacao Strawberry Smoothie Bowl -->
+    <img id="slide-7" src="./bowls/H.jpg" alt="Cacao Strawberry Smoothie Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 9: Pink Yogurt Berry Bowl -->
+    <img id="slide-8" src="./bowls/I.jpg" alt="Pink Yogurt Berry Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 10: Granola Mix Fruit Bowl -->
+    <img id="slide-9" src="./bowls/J.jpg" alt="Granola Mix Fruit Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 11: Heart Strawberry Pink Bowl -->
+    <img id="slide-10" src="./bowls/K.jpg" alt="Heart Strawberry Pink Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Image 12: Almond Butter Deluxe Bowl -->
+    <img id="slide-11" src="./bowls/L.jpg" alt="Almond Butter Deluxe Bowl" 
+         class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" />
+
+    <!-- Overlay Floating Rating Badge -->
+    <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 bg-white/95 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-xl border border-pink-100 flex items-center gap-2.5 z-10">
+      <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-pink-50 flex items-center justify-center text-xs sm:text-sm">⭐</div>
+      <div>
+        <p class="text-[11px] sm:text-xs font-bold text-gray-900">4.9 Star Rated</p>
+        <p class="text-[9px] sm:text-[10px] text-gray-500">1,200+ breakfast lovers</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- JAVASCRIPT FOR AUTOMATIC IMAGE SLIDER -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    setInterval(() => {
+      // Hide current image
+      slides[currentIndex].classList.remove('opacity-100');
+      slides[currentIndex].classList.add('opacity-0');
+
+      // Move to next image
+      currentIndex = (currentIndex + 1) % totalSlides;
+
+      // Show next image
+      slides[currentIndex].classList.remove('opacity-0');
+      slides[currentIndex].classList.add('opacity-100');
+    }, 2000); // 2 Seconds interval
+  });
+</script>
+        
+
 
         <!-- Quality & Story Section -->
-        <section id="quality" class="py-xl bg-surface-container-low my-xl">
+        <section id="quality" class="py-xl bg-surface-container-low my-l">
             <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
                 <h2 class="text-headline-lg font-headline-lg text-center mb-lg">Uncompromised Quality in Every Bowl</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
